@@ -10,9 +10,16 @@ class App extends Component {
 
     this.state = {
       gifs: [],
-      selectedGifId: "qNYWVh6bWa0p2"
-    }
+      selectedGifId: "xT9IgDEI1iZyb2wqo8"
+    };
   }
+
+  selectGif = (id) => {
+    this.setState({
+      selectedGifId: id
+    });
+  }
+
 
   search = (query) =>{
     giphy('LnfmqGmF56YMT31NYnmrVV0bkn2ui7vm').search(query, (err, res) => {
@@ -20,29 +27,22 @@ class App extends Component {
         gifs: res.data
        });
     });
-
   }
 
 
-  render() {
 
-    const gifs = [
-      { id: "qNYWVh6bWa0p2" },
-      {id: "TsHvwNpO6GYPC"},
-      {id: "KpAPQVW9lWnWU"},
-      {id: "mxPzDgzRCKOty"}
-    ];
+  render() {
 
     return(
       <div>
         <div className="left-scene">
           <SearchBar searchFunction={this.search} />
           <div className="selected-gif">
-            <Gif id={this.state.selectedGifId} />
+            <Gif id={this.state.selectedGifId}  />
           </div>
         </div>
         <div className="right-scene">
-          <GifList gifs={this.state.gifs}/>
+          <GifList gifs={this.state.gifs} selectGif={this.selectGif}/>
         </div>
       </div>
       )

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class SearchBar extends Component {
   handleChange = (e) => {
     this.props.searchFunction(e.target.value);
