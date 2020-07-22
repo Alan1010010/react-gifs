@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       gifs: [],
-      selectedGifId: "xT9IgDEI1iZyb2wqo8"
+      selectedGifId: "xGdvlOVSWaDvi"
     };
   }
 
@@ -20,9 +20,18 @@ class App extends Component {
     });
   }
 
+  selectFirstGif = (id) => {
+    this.setState({
+      selectedGifId: id
+    });
+  }
+
 
   search = (query) =>{
-    giphy('LnfmqGmF56YMT31NYnmrVV0bkn2ui7vm').search(query, (err, res) => {
+    giphy('LnfmqGmF56YMT31NYnmrVV0bkn2ui7vm').search({
+      q: query,
+      limit: 9
+    }, (err, res) => {
        this.setState({
         gifs: res.data
        });
